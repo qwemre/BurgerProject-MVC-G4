@@ -1,0 +1,32 @@
+﻿@model AppUser
+
+
+<h4>Your Addresses</h4>
+<div class="form-outline mb-4">
+        @{int count = 1;}
+    @foreach (var item in Model.Addresses)
+    {
+        <div class="d-flex justify-content-between" id="myDiv-@item.AddressID">
+            <div>
+                <label class="form-label" for="form7example7">Address @count:</label>
+            </div>
+            <div>
+                <a  onclick="EditAddress('@item.AddressID')"  ><img src="/ProductsImages/668310.png" style="height:20px; cursor:pointer;"></a>
+                <a onclick="DeleteAddress('@item.AddressID')" ><img src="/ProductsImages/3311484.png" style="height:20px; cursor:pointer;"></a>
+            </div>
+        </div>
+            <textarea class="form-control" id="myAddress-@item.AddressID" onblur="FocusChange('@item.AddressID')" rows="4" readonly>@item.AddressDescription</textarea>
+        count++;
+    }
+</div>
+<h4>Add New Address</h4>
+<div class="form-group">
+    <textarea class="form-control" rows="4" id="newAddress"></textarea>
+</div>
+<div class="text-center mt-3 ">
+    <button type="button" class="btn btn-primary" onclick="saveChanges(@Model.Id)">Save changes</button>&nbsp;
+    <button type="button" class="btn btn-default">Cancel</button>
+</div>
+
+
+<script src="~/js/useraddress.js"></script>
